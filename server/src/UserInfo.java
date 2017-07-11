@@ -2,7 +2,7 @@ package com.tigerconnect.model;
 
 import java.io.Serializable;
 
-public class Test1 implements Serializable{
+public class UserInfo implements Serializable{
 	
 	private static final long serialVersionUID = 1238918602068356152L;
 	
@@ -11,7 +11,7 @@ public class Test1 implements Serializable{
 	String email;
 	
 	
-	public Test1(String username, String password, String email) {
+	public UserInfo(String username, String password, String email) {
 		super();
 		this.username = username;
 		this.password = password;
