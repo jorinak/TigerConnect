@@ -4,20 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.tigerconnect.model.Test1;
+import com.tigerconnect.model.UserInfo;
 
-public class Test1Dao {
+public class UserInfoDao {
 	
-	private static final String GET_SQL = "select * from Test1 where username = ?";
-	private static final String INSERT_SQL = "insert into Test1 values (?, ?, ?)";
+	private static final String GET_SQL = "select * from user_info where username = ?";
+	private static final String INSERT_SQL = "insert into user_info values (?, ?, ?, ?)";
 
-	public Test1Dao() {
+	public UserInfoDao() {
 		super();
 
 	}
 
-	public Test1 get(String username) throws Exception {
-		Test1 result = null;
+	public UserInfo get(String username) throws Exception {
+		UserInfo result = null;
 
 		if (username != null) {
 			DbUtils dbUtils = new DbUtils();
@@ -30,7 +30,7 @@ public class Test1Dao {
 				stmt.setString(1, username);
 				rs = stmt.executeQuery();
 				if (rs.next()) {
-					result = new Test1(rs.getString("username"), rs.getString("password"), rs.getString("email"));
+					result = new UserInfo(rs.getString("username"), rs.getString("password"), rs.getString("email"));
 				}
 			} finally {
 				dbUtils.closeResultSet(rs);
@@ -41,8 +41,8 @@ public class Test1Dao {
 		return result;
 	}
 	
-	public Test1 create(String username, String password, String email) throws Exception {
-		Test1 result = null;
+	public UserInfo create(String username, String password, String email) throws Exception {
+		UserInfo result = null;
 
 		if (username != null) {
 			DbUtils dbUtils = new DbUtils();
@@ -52,9 +52,10 @@ public class Test1Dao {
 			try {
 				conn = dbUtils.getConnection();
 				stmt = conn.prepareStatement(INSERT_SQL);
-				stmt.setString(1, username);
-				stmt.setString(2, password);
-				stmt.setString(3, email);
+				stmt.setInt(1, 0);
+				stmt.setString(2, username);
+				stmt.setString(3, password);
+				stmt.setString(4, email);
 				stmt.executeUpdate();
 			} finally {
 				dbUtils.closeResultSet(rs);
@@ -62,7 +63,7 @@ public class Test1Dao {
 				dbUtils.closeConnection(conn);
 			}
 		}
-		result = new Test1(username, password, email);
+		result = new UserInfo(username, password, email);
 		return result;
 	}
 	
