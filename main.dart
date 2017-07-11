@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
 
@@ -84,6 +85,14 @@ class HomePage extends StatelessWidget {
 
 // creates the sign in page (where username and password are inputted)
 class SignInPage extends StatelessWidget {
+  // helper method that makes a get request
+  checkData() async {
+    var httpClient = createHttpClient();
+    var response = await httpClient.get('http://localhost:8080/tiger-connect/signin?login=jorinak&password=dog');
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
   String passwordFieldContent;
 
   @override
@@ -104,8 +113,8 @@ class SignInPage extends StatelessWidget {
                       // input fields provided (username and password)
                       new TextField(
                           decoration: new InputDecoration(
-                              // before the text field is clicked by the user
-                              // this text will appear there
+                            // before the text field is clicked by the user
+                            // this text will appear there
                               hintText: "Username",
 
                               // when the user is typing their username this will
@@ -116,15 +125,15 @@ class SignInPage extends StatelessWidget {
                       ),
 
                       new TextField(
-                          decoration: new InputDecoration(
+                        decoration: new InputDecoration(
                             hintText: "Password",
                             labelText: "Password"
-                          ),
+                        ),
 
-                          // replaces the text with dots
-                          obscureText: true,
+                        // replaces the text with dots
+                        obscureText: true,
                         onChanged: (String value) {
-                            passwordFieldContent = value;
+                          passwordFieldContent = value;
                         },
                       ),
 
@@ -134,7 +143,10 @@ class SignInPage extends StatelessWidget {
                         icon: new Icon(
                             Icons.blur_circular, color: Colors.orange),
                         iconSize: 60.0,
-                        onPressed: () {Navigator.of(context).pushNamed("/HomeProfilePage");},
+                        onPressed: () {
+                          checkData();
+                          Navigator.of(context).pushNamed("/HomeProfilePage");
+                          },
                       ),
                       new Text("Sign In")
                     ]
@@ -147,6 +159,14 @@ class SignInPage extends StatelessWidget {
 
 // creates the sign up page
 class SignUpPage extends StatelessWidget {
+  // helper method that makes a get request
+  insertData() async {
+    var httpClient = createHttpClient();
+    var response = await httpClient.get('http://localhost:8080/tiger-connect/signup?login=jorinak&password=dog&email=jorinak@princeton.edu');
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
   String passwordFieldContent;
 
   @override
@@ -166,27 +186,27 @@ class SignUpPage extends StatelessWidget {
                       new TextField(
                           decoration: new InputDecoration(
                               hintText: "Princeton Email",
-                            labelText: "Princeton Email"
+                              labelText: "Princeton Email"
                           )
                       ),
 
                       new TextField(
                           decoration: new InputDecoration(
                               hintText: "Create Your Username",
-                            labelText: "Create Your Username"
+                              labelText: "Create Your Username"
                           )
                       ),
 
                       new TextField(
-                          decoration: new InputDecoration(
-                              hintText: "Create Your Password",
-                            labelText: "Create Your Password",
-                          ),
+                        decoration: new InputDecoration(
+                          hintText: "Create Your Password",
+                          labelText: "Create Your Password",
+                        ),
 
-                      // hides the text of the password being inputted
-                      obscureText: true,
+                        // hides the text of the password being inputted
+                        obscureText: true,
                         onChanged: (String value) {
-                            passwordFieldContent = value;
+                          passwordFieldContent = value;
                         },
                       ),
 
@@ -198,7 +218,9 @@ class SignUpPage extends StatelessWidget {
                         iconSize: 70.0,
 
                         // the button does not push to another page yet
-                        onPressed: null,
+                        onPressed: () {
+                          insertData();
+                        },
                       ),
                       new Text("Sign Up")
                     ]
@@ -219,7 +241,7 @@ class HomeProfilePage extends StatelessWidget {
     Padding padding = new Padding(
         child: new Icon(
           Icons.account_circle, size: 100.0, color: Colors.black,),
-          padding: const EdgeInsets.only(bottom: 20.0)
+        padding: const EdgeInsets.only(bottom: 20.0)
     );
 
     var drawerHeader = new DrawerHeader(
@@ -242,8 +264,8 @@ class HomeProfilePage extends StatelessWidget {
       ),
 
       new ListTile(
-        title: const Text("<blank>"),
-        enabled: true
+          title: const Text("<blank>"),
+          enabled: true
       ),
     ];
 
@@ -267,8 +289,8 @@ class HomeProfilePage extends StatelessWidget {
           new IconButton(
             icon: new Icon(Icons.search),
 
-              // redirects to a page where the user can search for new "connects"
-              onPressed: () {
+            // redirects to a page where the user can search for new "connects"
+            onPressed: () {
               Navigator.of(context).pushNamed("/SearchPage");
             },
           ),
@@ -319,16 +341,16 @@ class SearchPage extends StatelessWidget {
 
     var child1 = new Text("Choose from the following categories (choose at least 1)",
       textAlign: TextAlign.center,
-        style: new TextStyle(fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-          fontFamily: "Times New Roman",
+      style: new TextStyle(fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+        fontFamily: "Times New Roman",
       ),
     );
 
     // meant to be a category
     var child2 = new Text("TBD",
       style: new TextStyle(fontSize: 18.0,
-          fontFamily: "Arial",
+        fontFamily: "Arial",
       ),
     );
 
@@ -354,329 +376,329 @@ class SearchPage extends StatelessWidget {
 
     return new Scaffold(
 
-      appBar: new AppBar(
-        title: new Text("Make Connections",
-          style: new TextStyle(color: Colors.orange),
+        appBar: new AppBar(
+          title: new Text("Make Connections",
+            style: new TextStyle(color: Colors.orange),
+          ),
+          backgroundColor: Colors.black,
         ),
-        backgroundColor: Colors.black,
-      ),
-      
-      body: new Container(
-        child: new ListView(
 
-          children: <Widget>[
+        body: new Container(
+            child: new ListView(
 
-            padding,
+                children: <Widget>[
 
-            padding3,
+                  padding,
 
-            // row with 3 option boxes for the user to click on based on a category
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  padding3,
 
-            children: <Widget>[
+                  // row with 3 option boxes for the user to click on based on a category
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-              new Container(
-                  child: new Column(
                       children: <Widget>[
-                        new FlatButton(
-                            onPressed: null,
-                            child: new Icon(Icons.check_box_outline_blank,
-                              color: Colors.black,)),
 
-                        new Text("Similar")
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
                       ]
-                  )
-              ),
-              
-              new Container(
-                child: new Column(
-                  children: <Widget>[
-                    new FlatButton(
-                      onPressed: null,
-                      child: new Icon(Icons.check_box_outline_blank,
-                        color: Colors.black,)),
-                 
-                    new Text("Different")
-                  ]
-                )
-              ),
+                  ),
 
-              new Container(
-                  child: new Column(
+                  padding2,
+
+                  // another row of boxes
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                       children: <Widget>[
-                        new FlatButton(
-                            onPressed: null,
-                            child: new Icon(Icons.check_box_outline_blank,
-                              color: Colors.black,)),
 
-                        new Text("None")
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
                       ]
+                  ),
+
+                  padding3,
+
+                  // another row of boxes
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                      children: <Widget>[
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
+                      ]
+                  ),
+
+                  padding3,
+
+                  // another row of boxes
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                      children: <Widget>[
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
+                      ]
+                  ),
+
+                  padding3,
+
+                  // another row of boxes
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                      children: <Widget>[
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
+                      ]
+                  ),
+
+                  padding3,
+
+                  // another row of boxes
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                      children: <Widget>[
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Similar")
+                                ]
+                            )
+                        ),
+
+
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("Different")
+                                ]
+                            )
+                        ),
+
+                        new Container(
+                            child: new Column(
+                                children: <Widget>[
+                                  new FlatButton(
+                                      onPressed: null,
+                                      child: new Icon(Icons.check_box_outline_blank,
+                                        color: Colors.black,)),
+
+                                  new Text("None")
+                                ]
+                            )
+                        ),
+                      ]
+                  ),
+
+                  // once the user is done choosing, search button at the bottom
+                  new Container(alignment: FractionalOffset.bottomCenter,
+
+                      child: new FlatButton(
+                          onPressed: null,
+                          child: new Icon(Icons.search, size: 28.0,),
+                          color: Colors.blue
+                      )
                   )
-                ),
-              ]
-            ),
-
-            padding2,
-
-            // another row of boxes
-            new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: <Widget>[
-
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Similar")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Different")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("None")
-                          ]
-                      )
-                  ),
                 ]
-            ),
-
-            padding3,
-
-            // another row of boxes
-            new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: <Widget>[
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Similar")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Different")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("None")
-                          ]
-                      )
-                  ),
-                ]
-            ),
-
-            padding3,
-
-            // another row of boxes
-            new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: <Widget>[
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Similar")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Different")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("None")
-                          ]
-                      )
-                  ),
-                ]
-            ),
-
-            padding3,
-
-            // another row of boxes
-            new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: <Widget>[
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Similar")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Different")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("None")
-                          ]
-                      )
-                  ),
-                ]
-            ),
-
-            padding3,
-
-            // another row of boxes
-            new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: <Widget>[
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Similar")
-                          ]
-                      )
-                  ),
-
-
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("Different")
-                          ]
-                      )
-                  ),
-
-                  new Container(
-                      child: new Column(
-                          children: <Widget>[
-                            new FlatButton(
-                                onPressed: null,
-                                child: new Icon(Icons.check_box_outline_blank,
-                                  color: Colors.black,)),
-
-                            new Text("None")
-                          ]
-                      )
-                  ),
-                ]
-            ),
-
-            // once the user is done choosing, search button at the bottom
-            new Container(alignment: FractionalOffset.bottomCenter,
-
-                child: new FlatButton(
-                    onPressed: null,
-                    child: new Icon(Icons.search, size: 28.0,),
-                    color: Colors.blue
-                )
             )
-          ]
         )
-      )
     );
   }
 }
