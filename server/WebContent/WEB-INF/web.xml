@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>SignInServlet</servlet-name>
     <servlet-class>com.tigerconnect.SignInServlet</servlet-class>
@@ -18,7 +19,7 @@
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
   
-  <servlet>
+<servlet>
     <servlet-name>SignUpServlet</servlet-name>
     <servlet-class>com.tigerconnect.SignUpServlet</servlet-class>
   </servlet>
@@ -26,4 +27,14 @@
     <servlet-name>SignUpServlet</servlet-name>
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
+
+<servlet>
+    <servlet-name>PersonalProfileServlet</servlet-name>
+    <servlet-class>com.tigerconnect.PersonalProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonalProfileServlet</servlet-name>
+    <url-pattern>/pprof</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
