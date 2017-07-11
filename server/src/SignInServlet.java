@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tigerconnect.dao.Test1Dao;
-import com.tigerconnect.model.Test1;
+import com.tigerconnect.dao.UserInfoDao;
+import com.tigerconnect.model.UserInfo;
 
 public class SignInServlet extends HttpServlet {
 
@@ -22,10 +22,10 @@ public class SignInServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 		System.out.println("Login= " + login + " Password= " + pass);
 		if (login != null && pass != null) {
-			Test1Dao test1Dao = new Test1Dao();
+			UserInfoDao test1Dao = new UserInfoDao();
 			PrintWriter writer = response.getWriter();
 			try {
-				Test1 test1 = test1Dao.get(login);
+				UserInfo test1 = test1Dao.get(login);
 				if (test1 == null) {
 					writer.println(FAILURE);
 				} else {
