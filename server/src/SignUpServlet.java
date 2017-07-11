@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tigerconnect.dao.Test1Dao;
-import com.tigerconnect.model.Test1;
+import com.tigerconnect.dao.UserInfoDao;
+import com.tigerconnect.model.UserInfo;
 
 public class SignUpServlet extends HttpServlet {
 
@@ -24,10 +24,10 @@ public class SignUpServlet extends HttpServlet {
 		
 		System.out.println("Login= " + login + " Password= " + pass + " Email= " + email);
 		if (login != null && pass != null && email != null) {
-			Test1Dao test1Dao = new Test1Dao();
+			UserInfoDao test1Dao = new UserInfoDao();
 			PrintWriter writer = response.getWriter();
 			try {
-				Test1 test1 = test1Dao.create(login, pass, email);
+				UserInfo test1 = test1Dao.create(login, pass, email);
 				if (test1 == null) {
 					writer.println(FAILURE);
 				} else {
