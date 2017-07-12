@@ -29,7 +29,7 @@ public class PersonalityInfo extends HttpServlet {
 				conn = dbUtils.getConnection();
 				stmt = conn.prepareCall("{CALL createPersonality(?, ?, ?)}");
 				stmt.setInt("user_id",  id);
-				stmt.setInt("personality_id", p_id);
+				stmt.setInt("personality_attribute", p_id);
 				stmt.setInt("scale", scale);
 				rs = stmt.executeQuery();
 				rs.next();
