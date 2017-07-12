@@ -1,0 +1,9 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createPersonality`(user_id INT, personality_id INT, scale INT)
+BEGIN
+
+INSERT INTO personality
+VALUES
+(user_id, personality_id, scale);
+SET @valid = true;
+SELECT @valid;
+END
