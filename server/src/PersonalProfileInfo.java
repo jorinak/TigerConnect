@@ -38,6 +38,7 @@ public class PersonalProfileInfo extends HttpServlet {
 					writer.println(FAILURE);
 				} else {
 					writer.println(SUCCESS);
+					writer.println("" + basic.getId() + "");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
