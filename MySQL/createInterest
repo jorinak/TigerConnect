@@ -1,0 +1,12 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createInterest`(user_id INT, category_name VARCHAR(45), specific_interest VARCHAR(45), rank INT)
+BEGIN
+
+IF NOT EXISTS (SELECT * FROM special_interests WHERE special_interests.user_id = user_id AND special_interests.category_name = category_name AND special_interests.specific_interest = specific_interest) THEN
+
+INSERT INTO special_interests
+VALUES
+(user_id, category_name, specific_interest, rank);
+SELECT true AS valid;
+ELSE SELECT false AS valid;
+END IF;
+END
