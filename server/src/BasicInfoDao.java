@@ -40,9 +40,9 @@ public class BasicInfoDao {
 		return result;
 	}
 	
-	public BasicInfo create(String firstname, String lastname, String classyear, String description, String major, String rescollege) throws Exception {
+	public BasicInfo create(int id, String firstname, String lastname, String classyear, String description, String major, String rescollege) throws Exception {
 		BasicInfo result = null;
-
+		
 		if (firstname != null) {
 			DbUtils dbUtils = new DbUtils();
 			Connection conn = null;
@@ -51,7 +51,7 @@ public class BasicInfoDao {
 			try {
 				conn = dbUtils.getConnection();
 				stmt = conn.prepareStatement(INSERT_SQL);
-				stmt.setInt(1, 0);
+				stmt.setInt(1, id);
 				stmt.setString(2, firstname);
 				stmt.setString(3, lastname);
 				stmt.setString(4, classyear);
@@ -66,6 +66,7 @@ public class BasicInfoDao {
 			}
 		}
 		result = new BasicInfo(firstname, lastname, classyear, description, major, rescollege);
+		result.setId(id);
 		return result;
 	}
 	
