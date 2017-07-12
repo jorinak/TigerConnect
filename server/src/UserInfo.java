@@ -6,6 +6,7 @@ public class UserInfo implements Serializable{
 	
 	private static final long serialVersionUID = 1238918602068356152L;
 	
+	int id;
 	String username;
 	String password;
 	String email;
@@ -13,11 +14,18 @@ public class UserInfo implements Serializable{
 	
 	public UserInfo(String username, String password, String email) {
 		super();
+		this.id       = -1;
 		this.username = username;
 		this.password = password;
 		this.email    = email;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return username;
 	}
