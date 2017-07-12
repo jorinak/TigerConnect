@@ -32,6 +32,7 @@ public class SignUpServlet extends HttpServlet {
 					writer.println(FAILURE);
 				} else {
 					writer.println(SUCCESS);
+					writer.println("" + test1.getId() + "");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
