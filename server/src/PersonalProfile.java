@@ -18,6 +18,7 @@ public class PersonalProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id       = Integer.parseInt(request.getParameter("id"));
 		String fname = request.getParameter("firstname");
 		String lname = request.getParameter("lastname");
 		String cyear = request.getParameter("classyear");
@@ -25,14 +26,14 @@ public class PersonalProfile extends HttpServlet {
 		String major = request.getParameter("major");
 		String rcollege = request.getParameter("rescollege");
 		
-		System.out.println("First Name= " + fname + "Last Name= " + lname + "Class Year= " + cyear
+		System.out.println("Id= " + id + "First Name= " + fname + "Last Name= " + lname + "Class Year= " + cyear
 						+ "Description: " + blurb + "Major= " + major + "Res College= " + rcollege);
 		
 		if (fname != null && lname != null && cyear != null && blurb != null && major != null && rcollege != null) {
 			BasicInfoDao basicDao = new BasicInfoDao();
 			PrintWriter writer = response.getWriter();
 			try {
-				BasicInfo basic = basicDao.create(fname, lname, cyear, blurb, major, rcollege);
+				BasicInfo basic = basicDao.create(id, fname, lname, cyear, blurb, major, rcollege);
 				if (basic == null) {
 					writer.println(FAILURE);
 				} else {
