@@ -6,6 +6,7 @@ public class BasicInfo implements Serializable{
 	
 	private static final long serialVersionUID = 1238918602068356152L;
 	
+	int id;
 	String fname;
 	String lname;
 	String cyear;
@@ -15,6 +16,7 @@ public class BasicInfo implements Serializable{
 	
 	public BasicInfo(String firstname, String lastname, String classyear, String description, String major, String rescollege) {
 		super();
+		this.id       = -1;
 		this.fname    = firstname;
 		this.lname    = lastname;
 		this.cyear    = classyear;
@@ -23,6 +25,12 @@ public class BasicInfo implements Serializable{
 		this.rcollege = rescollege;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getFirstname() {
 		return fname;
 	}
