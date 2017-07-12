@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class DbUtils {
 
 	private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/mydb";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/tcdb";
 	private static final String DB_USER = "root";
 	private static final String DB_PW = "tiggerEPS8";
 
