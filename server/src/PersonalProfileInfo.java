@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.tigerconnect.dao.BasicInfoDao;
 import com.tigerconnect.model.BasicInfo;
 
-public class PersonalProfile extends HttpServlet {
+public class PersonalProfileInfo extends HttpServlet {
 
 	private static final String SUCCESS = "success";
 	private static final String FAILURE = "failure";
