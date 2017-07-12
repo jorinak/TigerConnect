@@ -16,10 +16,10 @@ public class PersonalityInfo extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id    = Integer.parseInt(request.getParameter("id"));
-		int p_id  = Integer.parseInt(request.getParameter("p_id"));
+		String trait = request.getParameter("trait");
 		int scale = Integer.parseInt(request.getParameter("scale"));
 		
-		if (id >= 0 && p_id >=0 && scale >= 0) {
+		if (id >= 0 && trait != null && scale >= 0) {
 			PrintWriter writer = response.getWriter();
 			DbUtils dbUtils = new DbUtils();
 			Connection conn = null;
@@ -29,7 +29,7 @@ public class PersonalityInfo extends HttpServlet {
 				conn = dbUtils.getConnection();
 				stmt = conn.prepareCall("{CALL createPersonality(?, ?, ?)}");
 				stmt.setInt("user_id",  id);
-				stmt.setInt("personality_attribute", p_id);
+				stmt.setString("personality_attribute", trait);
 				stmt.setInt("scale", scale);
 				rs = stmt.executeQuery();
 				rs.next();
