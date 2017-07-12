@@ -43,7 +43,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PersonalityInfo</servlet-name>
-    <url-pattern>/perinfo</url-pattern>
+    <url-pattern>/p_info</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>InterestInfo</servlet-name>
+    <servlet-class>com.tigerconnect.InterestInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InterestInfo</servlet-name>
+    <url-pattern>/interest</url-pattern>
   </servlet-mapping>
   
 </web-app>
