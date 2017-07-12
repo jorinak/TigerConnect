@@ -13,7 +13,6 @@ public class UserInfoDao {
 
 	public UserInfoDao() {
 		super();
-
 	}
 
 	public UserInfo get(String username) throws Exception {
@@ -63,7 +62,30 @@ public class UserInfoDao {
 				dbUtils.closeConnection(conn);
 			}
 		}
+		
 		result = new UserInfo(username, password, email);
+		
+		int id = -1;
+		if (username != null) {
+			DbUtils dbUtils = new DbUtils();
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				conn = dbUtils.getConnection();
+				stmt = conn.prepareStatement("select id from user_info where username = ?");
+				stmt.setString(1, username);
+				rs = stmt.executeQuery();
+				if (rs.next()) {
+					id = rs.getInt("id");
+				}
+			} finally {
+				dbUtils.closeResultSet(rs);
+				dbUtils.closeStatement(stmt);
+				dbUtils.closeConnection(conn);
+			}
+		}
+		result.setId(id);
 		return result;
 	}
 	
