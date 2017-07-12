@@ -37,4 +37,13 @@
     <url-pattern>/pprof</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>PersonalityInfo</servlet-name>
+    <servlet-class>com.tigerconnect.PersonalityInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonalityInfo</servlet-name>
+    <url-pattern>/perinfo</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
