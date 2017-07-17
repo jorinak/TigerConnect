@@ -18,9 +18,8 @@ public class InterestInfo extends HttpServlet {
 		int id          = Integer.parseInt(request.getParameter("id"));
 		String cat      = request.getParameter("category");
 		String interest = request.getParameter("interest");
-		int rank        = Integer.parseInt(request.getParameter("rank"));
 		
-		if (id >= 0 && cat != null && interest != null && rank >= 0) {
+		if (id >= 0 && cat != null && interest != null) {
 			PrintWriter writer = response.getWriter();
 			DbUtils dbUtils = new DbUtils();
 			Connection conn = null;
@@ -28,11 +27,10 @@ public class InterestInfo extends HttpServlet {
 			ResultSet rs = null;
 			try {
 				conn = dbUtils.getConnection();
-				stmt = conn.prepareCall("{CALL createInterest(?, ?, ?, ?)}");
+				stmt = conn.prepareCall("{CALL createInterest(?, ?, ?)}");
 				stmt.setInt("user_id",  id);
 				stmt.setString("category_name", cat);
 				stmt.setString("specific_interest", interest);
-				stmt.setInt("rank", rank);
 				rs = stmt.executeQuery();
 				rs.next();
 				writer.println(rs.getBoolean("@valid"));
