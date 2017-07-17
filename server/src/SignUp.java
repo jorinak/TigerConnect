@@ -34,7 +34,9 @@ public class SignUp extends HttpServlet {
 				stmt.setString("email_input", pass);
 				rs = stmt.executeQuery();
 				rs.next();
-				writer.println(rs.getInt("@id"));	
+				int id = rs.getInt("@id");
+				String s_id = ""+ id + "";
+				writer.println(s_id);	
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
