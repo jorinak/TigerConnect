@@ -20,6 +20,8 @@ public class SignUp extends HttpServlet {
 		String pass  = request.getParameter("password");
 		String email = request.getParameter("email");
 		
+		// Check to make sure that email is a Princeton email
+		
 		if (username != null && pass != null && email != null) {
 			PrintWriter writer = response.getWriter();
 			DbUtils dbUtils = new DbUtils();
