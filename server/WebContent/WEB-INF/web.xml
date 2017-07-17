@@ -20,11 +20,11 @@
   </servlet-mapping>
   
 <servlet>
-    <servlet-name>SignUpServlet</servlet-name>
-    <servlet-class>com.tigerconnect.SignUpServlet</servlet-class>
+    <servlet-name>SignUp</servlet-name>
+    <servlet-class>com.tigerconnect.SignUp</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SignUpServlet</servlet-name>
+    <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
 
