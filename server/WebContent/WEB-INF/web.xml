@@ -29,12 +29,12 @@
   </servlet-mapping>
 
 <servlet>
-    <servlet-name>PersonalProfileInfo</servlet-name>
-    <servlet-class>com.tigerconnect.PersonalProfileInfo</servlet-class>
+    <servlet-name>BasicInformation</servlet-name>
+    <servlet-class>com.tigerconnect.BasicInformation</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PersonalProfileInfo</servlet-name>
-    <url-pattern>/pprof</url-pattern>
+    <servlet-name>BasicInformation</servlet-name>
+    <url-pattern>/basicinfo</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -43,7 +43,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PersonalityInfo</servlet-name>
-    <url-pattern>/p_info</url-pattern>
+    <url-pattern>/personality</url-pattern>
   </servlet-mapping>
   
   <servlet>
