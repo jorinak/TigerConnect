@@ -1,0 +1,24 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `personalityRank`(id INT)
+BEGIN
+SET @count = 1;
+WHILE (@count < 6) DO
+
+SELECT scale 
+FROM personality 
+WHERE user_id = id AND personality_id = @count 
+INTO @currentScale;
+
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 = id AND user2  IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale));
+
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale) AND user2 = id);
+
+
+
+SET @count = @count + 1;
+
+END WHILE;
+END
