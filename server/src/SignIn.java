@@ -11,7 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import com.tigerconnect.dao.DbUtils;
 
-public class SignInServlet extends HttpServlet {
+public class SignIn extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,13 +27,12 @@ public class SignInServlet extends HttpServlet {
 			ResultSet rs = null;
 			try {
 				conn = dbUtils.getConnection();
-				stmt = conn.prepareCall("{CALL verifyUser(?,?)}");
-				stmt.setString("username_input",  username);
+				stmt = conn.prepareCall("{CALL verifyUser(?, ?)}");
+				stmt.setString("username_input", username);
 				stmt.setString("password_input", pass);
 				rs = stmt.executeQuery();
 				rs.next();
-				writer.println(rs.getBoolean("@valid"));
-						
+				writer.println(rs.getBoolean("@valid"));	
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
