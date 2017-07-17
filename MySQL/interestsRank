@@ -1,0 +1,47 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `interestsRank`(userID INT)
+BEGIN
+
+SELECT MIN(id)
+FROM special_interests
+WHERE user_id = userID
+INTO @count;
+
+SET @max = @count + 5;
+
+WHILE (@count < @max ) DO 
+
+SELECT specific_interest, category_id
+FROM special_interests 
+WHERE user_id = userID AND special_interests.id = @count 
+INTO @currentInterest, @currentCategory;
+
+-- Specific Interest Addition --
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 = userID AND user2 IN(SELECT user_id FROM special_interests WHERE specific_interest = @currentInterest AND interests_done = false));
+
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 IN(SELECT user_id FROM special_interests WHERE specific_interest = @currentInterest AND interests_done = false) AND user2 = userID);
+-- Category Addition -- 
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 = userID AND user2 IN(SELECT user_id FROM special_interests WHERE category_id = @currentCategory AND interests_done = false));
+
+UPDATE connection_ranking 
+SET rank = rank + 1
+WHERE (user1 IN(SELECT user_id FROM special_interests WHERE category_id = @currentCategory AND interests_done = false) AND user2 = userID);
+
+SET @count = @count + 1;
+
+END WHILE;
+
+UPDATE connection_ranking
+SET interests_done = true
+WHERE user1 = userID;
+
+UPDATE connection_ranking
+SET interests_done = true
+WHERE user2 = userID;
+
+END
