@@ -1,0 +1,49 @@
+
+
+/*INSERT INTO special_interest_categories
+VALUES
+(1, 'Art'),
+(2, 'Sports and Fitness'),
+(3, 'Food'),
+(4, 'Outdoors'),
+(5, 'Hobbies');*/
+
+-- SELECT * FROM special_interest_categories;
+
+/*INSERT INTO special_interests
+VALUES
+(1,	4,	'1',	'Painting'),
+(2,	4,	'2',	'Dance'),
+(3,	4,	'3',	'Cooking'),
+(4,	4,	'4',	'Hiking'),
+(5,	4,	'5',	'Knitting'),
+(6,	5,	'1',	'Painting'),
+(7,	5,	'2', NULL),
+(8,	5,	'2',	'Soccer'),
+(9,	5,	'2',	'Tennis'),
+(10,	5,	'2',	'Volleyball'),
+(11,	6,	'3', NULL),
+(12,	6,	'3', 'Cooking'),
+(13,	6,	'3',	'Baking'),
+(14,	6,	'1',	'Photography'),
+(15,	6,	'5',	'Knitting');*/
+
+-- SELECT * FROM special_interests;
+-- CALL interestsRank(6);
+
+/*UPDATE connection_ranking
+SET rank = 0, interests_done = 0
+WHERE user1 < 100;*/
+
+
+/*
+INSERT INTO connection_ranking
+VALUES
+(4, 5, 0),
+(4, 6, 0),
+(5, 6, 0);*/
+
+-- SELECT * FROM special_interests;
+
+-- SELECT * FROM connection_ranking;
+
