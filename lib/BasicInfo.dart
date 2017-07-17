@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter/services.dart';
 
 class BasicInfo extends StatefulWidget {
 
@@ -8,21 +7,26 @@ class BasicInfo extends StatefulWidget {
   BasicInfoState createState() => new BasicInfoState();
 }
 
-
 class BasicInfoState extends State<BasicInfo> {
 
-  String firstName = "";
-
-  String lastName = "";
-
-  String classYear = "";
-
+  int userId        = 1;
+  String firstName  = "";
+  String lastName   = "";
+  String classYear  = "";
   String resCollege = "";
-
-  String major = "";
-
+  String major      = "";
   String shortDescription = "";
 
+  // helper method that makes a get request to add user preferences
+  inputData() async {
+    var httpClient = createHttpClient();
+    var response = await httpClient.get(
+        'http://localhost:8080/tiger-connect/signup?id=${userId}'
+            '&fname=${firstName}&lname=${lastName}&cyear=${classYear}'
+            '&blurb=${shortDescription}&major=${major}&rcollege=${resCollege}');
+    String id = response.body;
+    Navigator.of(context).pushNamed("/Personality");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +40,19 @@ class BasicInfoState extends State<BasicInfo> {
                 color: Colors.orangeAccent,
                 fontSize: 18.0),
           ),
-            color: Colors.black,
-            onPressed: () {Navigator.of(context).pushNamed("/Personality");},
+          color: Colors.black,
+          onPressed: () {
+            inputData();
+            },
         )
     );
 
 
     return new ListView(
-      
-     padding: const EdgeInsets.only(
-         right: 70.0, top: 10.0, left: 30.0,
-     ),
+
+      padding: const EdgeInsets.only(
+        right: 70.0, top: 10.0, left: 30.0,
+      ),
 
       children: <Widget>[
 
