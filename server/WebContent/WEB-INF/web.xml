@@ -55,4 +55,13 @@
     <url-pattern>/interest</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Connections</servlet-name>
+    <servlet-class>com.tigerconnect.Connections</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Connections</servlet-name>
+    <url-pattern>/connect</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
