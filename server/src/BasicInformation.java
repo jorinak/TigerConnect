@@ -17,12 +17,12 @@ public class BasicInformation extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id       = Integer.parseInt(request.getParameter("id"));
-		String fname = request.getParameter("firstname");
-		String lname = request.getParameter("lastname");
-		String cyear = request.getParameter("classyear");
-		String blurb = request.getParameter("description");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String cyear = request.getParameter("cyear");
+		String blurb = request.getParameter("blurb");
 		String major = request.getParameter("major");
-		String rcollege = request.getParameter("rescollege");
+		String rcollege = request.getParameter("rcollege");
 		
 		if (id >=0 && fname != null && lname != null && cyear != null && blurb != null && major != null && rcollege != null) {
 			PrintWriter writer = response.getWriter();
