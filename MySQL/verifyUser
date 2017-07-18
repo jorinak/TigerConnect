@@ -1,0 +1,19 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verifyUser`(IN username_input VARCHAR(20), IN password_input VARCHAR(20))
+BEGIN
+SET @matchP = null;
+SET @user_id = null;
+SELECT password
+FROM user_info
+WHERE username = username_input
+INTO @matchP; 
+
+IF (@matchP = password_input) THEN  
+	SET @valid = true;
+		(SELECT id 
+		 FROM user_info
+         WHERE username = username_input
+		 INTO @user_id);
+ELSE SET @valid = false;
+END IF;
+SELECT @valid, @user_id;
+END
