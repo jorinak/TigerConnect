@@ -11,9 +11,8 @@ getProfile(id INT)
 
 createBasicInfo (id INT, firstname VARCHAR(45), lastname VARCHAR(45), classyear INT, description LONGTEXT, major VARCHAR(45), rescollege VARCHAR(45))
 
-createInterest (user_id INT, category_name VARCHAR(45), specific_interest VARCHAR(45), rank INT)
-	returns boolean (@valid)
-	
+createInterest(user_id INT, cat1 INT, cat2 INT, cat3 INT, cat4 INT, cat5 INT, si1 VARCHAR(45), si2 VARCHAR(45), si3 VARCHAR(45), si4 VARCHAR(45), si5 VARCHAR(45))
+
 createPersonality(user_id INT, scale1 INT, scale2 INT, scale3 INT, scale4 INT, scale5 INT)
 	returns nothing
 	
@@ -22,9 +21,7 @@ createUser(username_input VARCHAR(45), password_input VARCHAR(45), email_input V
 	
 getConnections(id INT)
 
-getProfile(id INT)
-
-interestsRank(userID INT)
+interestsRank(userID INT) NOT DONE!!!!!!!!!!!!
 
 personalityRank(id INT)
 
