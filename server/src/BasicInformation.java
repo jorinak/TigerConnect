@@ -1,7 +1,6 @@
 package com.tigerconnect;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +24,6 @@ public class BasicInformation extends HttpServlet {
 		String rcollege = request.getParameter("rcollege");
 		
 		if (id >=0 && fname != null && lname != null && cyear != null && blurb != null && major != null && rcollege != null) {
-			PrintWriter writer = response.getWriter();
 			DbUtils dbUtils = new DbUtils();
 			Connection conn = null;
 			CallableStatement stmt = null;
@@ -42,7 +40,6 @@ public class BasicInformation extends HttpServlet {
 				stmt.setString("rescollege", rcollege);
 				rs = stmt.executeQuery();
 				rs.next();
-				writer.println(rs.getInt("@id"));	
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
