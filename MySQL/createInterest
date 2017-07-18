@@ -1,12 +1,15 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createInterest`(user_id INT, category_name VARCHAR(45), specific_interest VARCHAR(45), rank INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createInterest`(user_id INT, cat1 INT, cat2 INT, cat3 INT, cat4 INT, cat5 INT, si1 VARCHAR(45), si2 VARCHAR(45), si3 VARCHAR(45), si4 VARCHAR(45), si5 VARCHAR(45))
 BEGIN
 
-IF NOT EXISTS (SELECT * FROM special_interests WHERE special_interests.user_id = user_id AND special_interests.category_name = category_name AND special_interests.specific_interest = specific_interest) THEN
-
 INSERT INTO special_interests
+(user_id, category_id, specific_interest)
 VALUES
-(user_id, category_name, specific_interest, rank);
-SELECT true AS valid;
-ELSE SELECT false AS valid;
-END IF;
+(user_id, cat1, si1),
+(user_id, cat2, si2),
+(user_id, cat3, si3),
+(user_id, cat4, si4),
+(user_id, cat5, si5);
+
+
+
 END
