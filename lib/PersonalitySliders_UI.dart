@@ -32,7 +32,7 @@ class _PersonalitySlidersState extends State<PersonalitySliders> {
     int n = _stability.toInt();
     var httpClient = createHttpClient();
     var response = await httpClient.get(
-        'http://localhost:8080/tiger-connect/personality?id=${globals.user_id}&s1=${o}&s2=${c}&s3=${e}&s4=${a}&s5=${n}');
+        'http://localhost:8080/tiger-connect/personality?id=${globals.user_id}&scale1=${o}&scale2=${c}&scale3=${e}&scale4=${a}&scale5=${n}');
     print(response.statusCode);
     print(response.body);
     Navigator.of(context).pushNamed("/Categories");
