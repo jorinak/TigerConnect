@@ -12,11 +12,14 @@ getProfile(id INT)
 createBasicInfo (id INT, firstname VARCHAR(45), lastname VARCHAR(45), classyear INT, description LONGTEXT, major VARCHAR(45), rescollege VARCHAR(45))
 
 createInterest (user_id INT, category_name VARCHAR(45), specific_interest VARCHAR(45), rank INT)
-
+	returns boolean (@valid)
+	
 createPersonality(user_id INT, personality_id INT, scale INT)
-
+	returns nothing
+	
 createUser(username_input VARCHAR(45), password_input VARCHAR(45), email_input VARCHAR(45))
-
+	returns id (INT)
+	
 getConnections(id INT)
 
 getProfile(id INT)
