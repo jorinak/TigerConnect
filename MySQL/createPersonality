@@ -1,10 +1,13 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createPersonality`(user_id INT, personality_attribute VARCHAR(45), scale INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createPersonality`(user_id INT, scale1 INT, scale2 INT, scale3 INT, scale4 INT, scale5 INT)
 BEGIN
-IF NOT EXISTS (SELECT user_id FROM personality WHERE personality.user_id = user_id AND personality.personality_attribute = personality_attribute AND personality.scale = scale) THEN
+
 INSERT INTO personality
 VALUES
-(user_id, personality_attribute, scale);
-SELECT true AS valid;
-ELSE SELECT false AS valid;
-END IF;
+(user_id, 1, scale1),
+(user_id, 2, scale2),
+(user_id, 3, scale3),
+(user_id, 4, scale4),
+(user_id, 5, scale5);
+
+
 END
