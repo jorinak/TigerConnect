@@ -15,23 +15,12 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_1 = false;
   bool hobbiesUpdate_1 = false;
 
-  bool artVal_1 = false;
-  bool foodVal_1 = false;
-  bool outdoorsVal_1 = false;
-  bool sportsVal_1 = false;
-  bool hobbiesVal_1 = false;
-
   bool artUpdate_2 = false;
   bool foodUpdate_2 = false;
   bool outdoorsUpdate_2 = false;
   bool sportsUpdate_2 = false;
   bool hobbiesUpdate_2 = false;
 
-  bool artVal_2 = false;
-  bool foodVal_2 = false;
-  bool outdoorsVal_2 = false;
-  bool sportsVal_2 = false;
-  bool hobbiesVal_2 = false;
 
   bool artUpdate_3 = false;
   bool foodUpdate_3 = false;
@@ -39,35 +28,17 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_3 = false;
   bool hobbiesUpdate_3 = false;
 
-  bool artVal_3 = false;
-  bool foodVal_3 = false;
-  bool outdoorsVal_3 = false;
-  bool sportsVal_3 = false;
-  bool hobbiesVal_3 = false;
-
   bool artUpdate_4 = false;
   bool foodUpdate_4 = false;
   bool outdoorsUpdate_4 = false;
   bool sportsUpdate_4 = false;
   bool hobbiesUpdate_4 = false;
 
-  bool artVal_4 = false;
-  bool foodVal_4 = false;
-  bool outdoorsVal_4 = false;
-  bool sportsVal_4 = false;
-  bool hobbiesVal_4 = false;
-
   bool artUpdate_5 = false;
   bool foodUpdate_5 = false;
   bool outdoorsUpdate_5 = false;
   bool sportsUpdate_5 = false;
   bool hobbiesUpdate_5 = false;
-
-  bool artVal_5 = false;
-  bool foodVal_5 = false;
-  bool outdoorsVal_5 = false;
-  bool sportsVal_5 = false;
-  bool hobbiesVal_5 = false;
 
   String firstChoice = "";
   String secondChoice = "";
@@ -81,42 +52,8 @@ class _InterestsState extends State<Interests> {
   int cat4 = -1;
   int cat5 = -1;
 
-  // helper method that updates values depending on chosen categories
-  updateInt() {
-    if      (artVal_1)      cat1 = 1;
-    else if (foodVal_1)     cat1 = 3;
-    else if (outdoorsVal_1) cat1 = 4;
-    else if (sportsVal_1)   cat1 = 2;
-    else if (hobbiesVal_1)  cat1 = 5;
-
-    if      (artVal_2)      cat2 = 1;
-    else if (foodVal_2)     cat2 = 3;
-    else if (outdoorsVal_2) cat2 = 4;
-    else if (sportsVal_2)   cat2 = 2;
-    else if (hobbiesVal_2)  cat2 = 5;
-
-    if      (artVal_3)      cat3 = 1;
-    else if (foodVal_3)     cat3 = 3;
-    else if (outdoorsVal_3) cat3 = 4;
-    else if (sportsVal_3)   cat3 = 2;
-    else if (hobbiesVal_3)  cat3 = 5;
-
-    if      (artVal_4)      cat4 = 1;
-    else if (foodUpdate_5)     cat4 = 3;
-    else if (outdoorsVal_4) cat4 = 4;
-    else if (sportsVal_4)   cat4 = 2;
-    else if (hobbiesVal_4)  cat4 = 5;
-
-    if      (artVal_5)      cat5 = 1;
-    else if (foodVal_5)     cat5 = 3;
-    else if (outdoorsVal_5) cat5 = 4;
-    else if (sportsVal_5)   cat5 = 2;
-    else if (hobbiesVal_5)  cat5 = 5;
-  }
-
   // helper method that makes a get request to add interest preferences
   inputData() async {
-    updateInt();
     var httpClient = createHttpClient();
     var response = await httpClient.get(
         'http://localhost:8080/tiger-connect/interest?id=${globals.user_id}&c1=${cat1}&c2=${cat2}&c3=${cat3}&c4=${cat4}&c5=${cat5}&s1=${firstChoice}&s2=${secondChoice}&s3=${thirdChoice}&s4=${fourthChoice}&s5=${fifthChoice}');
@@ -182,7 +119,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_1 = false;
                             }
                             else {
-                              foodVal_1 = food;
+                              cat1 = 3;
                               foodUpdate_1 = food;
                             }
                           });
@@ -208,7 +145,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_1 = false;
                             }
                             else {
-                              artVal_1 = art;
+                              cat1 = 1;
                               artUpdate_1 = art;
                             }
                           });
@@ -235,7 +172,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_1 = outdoors;
+                              cat1 = 4;
                               outdoorsUpdate_1 = outdoors;
                             }
                           });
@@ -262,7 +199,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_1 = false;
                             }
                             else {
-                              sportsVal_1 = sports;
+                              cat1 = 2;
                               sportsUpdate_1 = sports;
                             }
                           });
@@ -288,7 +225,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_1 = false;
                             }
                             else {
-                              hobbiesVal_1 = hobbies;
+                              cat1 = 5;
                               hobbiesUpdate_1 = hobbies;
                             }
                           });
@@ -348,7 +285,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_2 = false;
                             }
                             else {
-                              foodVal_2 = food;
+                              cat2 = 3;
                               foodUpdate_2 = food;
                             }
                           });
@@ -374,7 +311,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_2 = false;
                             }
                             else {
-                              artVal_2 = art;
+                              cat2 = 1;
                               artUpdate_2 = art;
                             }
                           });
@@ -401,7 +338,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_2 = outdoors;
+                              cat2 = 4;
                               outdoorsUpdate_2 = outdoors;
                             }
                           });
@@ -428,7 +365,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_2 = false;
                             }
                             else {
-                              sportsVal_2 = sports;
+                              cat2 = 2;
                               sportsUpdate_2 = sports;
                             }
                           });
@@ -454,7 +391,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_2 = false;
                             }
                             else {
-                              hobbiesVal_2 = hobbies;
+                              cat2 = 5;
                               hobbiesUpdate_2 = hobbies;
                             }
                           });
@@ -514,7 +451,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_3 = false;
                             }
                             else {
-                              foodVal_3 = food;
+                              cat3 = 3;
                               foodUpdate_3 = food;
                             }
                           });
@@ -540,7 +477,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_3 = false;
                             }
                             else {
-                              artVal_3 = art;
+                              cat3 = 1;
                               artUpdate_3 = art;
                             }
                           });
@@ -567,7 +504,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_3 = outdoors;
+                              cat3 = 4;
                               outdoorsUpdate_3 = outdoors;
                             }
                           });
@@ -594,7 +531,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_3 = false;
                             }
                             else {
-                              sportsVal_3 = sports;
+                              cat3 = 2;
                               sportsUpdate_3 = sports;
                             }
                           });
@@ -620,7 +557,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_3 = false;
                             }
                             else {
-                              hobbiesVal_3 = hobbies;
+                              cat3 = 5;
                               hobbiesUpdate_3 = hobbies;
                             }
                           });
@@ -680,7 +617,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_4 = false;
                             }
                             else {
-                              foodVal_4 = food;
+                              cat4 = 3;
                               foodUpdate_4 = food;
                             }
                           });
@@ -706,7 +643,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_4 = false;
                             }
                             else {
-                              artVal_4 = art;
+                              cat4 = 1;
                               artUpdate_4 = art;
                             }
                           });
@@ -733,7 +670,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_4 = outdoors;
+                              cat4 = 4;
                               outdoorsUpdate_4 = outdoors;
                             }
                           });
@@ -760,7 +697,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_4 = false;
                             }
                             else {
-                              sportsVal_4 = sports;
+                              cat4 = 2;
                               sportsUpdate_4 = sports;
                             }
                           });
@@ -786,7 +723,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_4 = false;
                             }
                             else {
-                              hobbiesVal_4 = hobbies;
+                              cat4 = 5;
                               hobbiesUpdate_4 = hobbies;
                             }
                           });
@@ -846,7 +783,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_5 = false;
                             }
                             else {
-                              foodVal_5 = food;
+                              cat5 = 3;
                               foodUpdate_5 = food;
                             }
                           });
@@ -872,7 +809,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_5 = false;
                             }
                             else {
-                              artVal_5 = art;
+                              cat5 = 1;
                               artUpdate_5 = art;
                             }
                           });
@@ -899,7 +836,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_5 = outdoors;
+                              cat5 = 4;
                               outdoorsUpdate_5 = outdoors;
                             }
                           });
@@ -926,7 +863,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_5 = false;
                             }
                             else {
-                              sportsVal_5 = sports;
+                              cat5 = 2;
                               sportsUpdate_5 = sports;
                             }
                           });
@@ -952,7 +889,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_5 = false;
                             }
                             else {
-                              hobbiesVal_5 = hobbies;
+                              cat5 = 5;
                               hobbiesUpdate_5 = hobbies;
                             }
                           });
@@ -982,6 +919,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
               raisedButton,
+
             ]
         )
     );
