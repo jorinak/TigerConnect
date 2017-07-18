@@ -108,7 +108,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_1 = false;
                             }
                             else {
-                              firstCategory = "Food";
+                              firstCategory = "food";
                               foodUpdate_1 = food;
                             }
                           });
