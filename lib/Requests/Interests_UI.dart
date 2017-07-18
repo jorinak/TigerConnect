@@ -75,11 +75,51 @@ class _InterestsState extends State<Interests> {
   String fourthChoice = "";
   String fifthChoice = "";
 
+  int cat1 = -1;
+  int cat2 = -1;
+  int cat3 = -1;
+  int cat4 = -1;
+  int cat5 = -1;
+
+  // helper method that updates values depending on chosen categories
+  updateInt() {
+    if      (artUpdate_1)      cat1 = 1;
+    else if (foodUpdate_1)     cat1 = 3;
+    else if (outdoorsUpdate_1) cat1 = 4;
+    else if (sportsUpdate_5)   cat1 = 2;
+    else if (hobbiesUpdate_1)  cat1 = 5;
+
+    if      (artUpdate_2)      cat2 = 1;
+    else if (foodUpdate_2)     cat2 = 3;
+    else if (outdoorsUpdate_2) cat2 = 4;
+    else if (sportsUpdate_2)   cat2 = 2;
+    else if (hobbiesUpdate_2)  cat2 = 5;
+
+    if      (artUpdate_3)      cat3 = 1;
+    else if (foodUpdate_3)     cat3 = 3;
+    else if (outdoorsUpdate_3) cat3 = 4;
+    else if (sportsUpdate_3)   cat3 = 2;
+    else if (hobbiesUpdate_3)  cat3 = 5;
+
+    if      (artUpdate_4)      cat4 = 1;
+    else if (foodUpdate_4)     cat4 = 3;
+    else if (outdoorsUpdate_4) cat4 = 4;
+    else if (sportsUpdate_4)   cat4 = 2;
+    else if (hobbiesUpdate_4)  cat4 = 5;
+
+    if      (artUpdate_5)      cat5 = 1;
+    else if (foodUpdate_5)     cat5 = 3;
+    else if (outdoorsUpdate_5) cat5 = 4;
+    else if (sportsUpdate_5)   cat5 = 2;
+    else if (hobbiesUpdate_5)  cat5 = 5;
+  }
+
   // helper method that makes a get request to add interest preferences
   inputData() async {
+    updateInt();
     var httpClient = createHttpClient();
     var response = await httpClient.get(
-        'http://localhost:8080/tiger-connect/interest?id=${globals.user_id}&c1=${}&c2=${}&c3=${}&c4=${}&c5=${}&s1=${firstChoice}&s2=${secondChoice}&s3=${thirdChoice}&s4=${fourthChoice}&s5=${fifthChoice}');
+        'http://localhost:8080/tiger-connect/interest?id=${globals.user_id}&c1=${cat1}&c2=${cat2}&c3=${cat3}&c4=${cat4}&c5=${cat5}&s1=${firstChoice}&s2=${secondChoice}&s3=${thirdChoice}&s4=${fourthChoice}&s5=${fifthChoice}');
     print(response.statusCode);
     print(response.body);
     Navigator.of(context).pushNamed("/HomeProfilePage");
