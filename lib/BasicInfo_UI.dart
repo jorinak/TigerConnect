@@ -8,13 +8,19 @@ class BasicInfo extends StatefulWidget {
   BasicInfoState createState() => new BasicInfoState();
 }
 
+
 class BasicInfoState extends State<BasicInfo> {
 
-  String firstName  = "";
-  String lastName   = "";
-  String classYear  = "";
+  String firstName = "";
+
+  String lastName = "";
+
+  String classYear = "";
+
   String resCollege = "";
-  String major      = "";
+
+  String major = "";
+
   String shortDescription = "";
 
   // helper method that makes a get request to add user preferences
@@ -31,7 +37,7 @@ class BasicInfoState extends State<BasicInfo> {
   Widget build(BuildContext context) {
 
     var raisedButton = new Padding(
-        padding: const EdgeInsets.only(top: 50.0, right: 80.0, left: 80.0),
+        padding: const EdgeInsets.only(top: 30.0, right: 50.0, left: 50.0, bottom: 80.0),
 
         child: new RaisedButton(
           child: new Text("Next",
