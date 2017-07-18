@@ -1,7 +1,6 @@
 package com.tigerconnect;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,25 +14,29 @@ public class PersonalityInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id    = Integer.parseInt(request.getParameter("id"));
-		String trait = request.getParameter("trait");
-		int scale = Integer.parseInt(request.getParameter("scale"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		int s1 = Integer.parseInt(request.getParameter("scale1"));
+		int s2 = Integer.parseInt(request.getParameter("scale2"));
+		int s3 = Integer.parseInt(request.getParameter("scale3"));
+		int s4 = Integer.parseInt(request.getParameter("scale4"));
+		int s5 = Integer.parseInt(request.getParameter("scale5"));
 		
-		if (id >= 0 && trait != null && scale >= 0) {
-			PrintWriter writer = response.getWriter();
+		if (id >= 0 && s1 > 0 && s2 > 0 && s3 > 0 && s4 > 0 && s5 > 0) {
 			DbUtils dbUtils = new DbUtils();
 			Connection conn = null;
 			CallableStatement stmt = null;
 			ResultSet rs = null;
 			try {
 				conn = dbUtils.getConnection();
-				stmt = conn.prepareCall("{CALL createPersonality(?, ?, ?)}");
+				stmt = conn.prepareCall("{CALL createPersonality(?, ?, ?, ?, ?, ?)}");
 				stmt.setInt("user_id",  id);
-				stmt.setString("personality_attribute", trait);
-				stmt.setInt("scale", scale);
+				stmt.setInt("scale1", s1);
+				stmt.setInt("scale2", s2);
+				stmt.setInt("scale3", s3);
+				stmt.setInt("scale4", s4);
+				stmt.setInt("scale5", s5);
 				rs = stmt.executeQuery();
 				rs.next();
-				writer.println(rs.getBoolean("@valid"));
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
