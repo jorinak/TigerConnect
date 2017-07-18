@@ -141,7 +141,7 @@ class _InterestsState extends State<Interests> {
           color: Colors.black,
           onPressed: () {
             inputData();
-            },
+          },
         )
     );
 
