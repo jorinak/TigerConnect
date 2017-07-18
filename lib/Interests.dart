@@ -13,23 +13,12 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_1 = false;
   bool hobbiesUpdate_1 = false;
 
-  bool artVal_1 = false;
-  bool foodVal_1 = false;
-  bool outdoorsVal_1 = false;
-  bool sportsVal_1 = false;
-  bool hobbiesVal_1 = false;
-
   bool artUpdate_2 = false;
   bool foodUpdate_2 = false;
   bool outdoorsUpdate_2 = false;
   bool sportsUpdate_2 = false;
   bool hobbiesUpdate_2 = false;
 
-  bool artVal_2 = false;
-  bool foodVal_2 = false;
-  bool outdoorsVal_2 = false;
-  bool sportsVal_2 = false;
-  bool hobbiesVal_2 = false;
 
   bool artUpdate_3 = false;
   bool foodUpdate_3 = false;
@@ -37,23 +26,11 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_3 = false;
   bool hobbiesUpdate_3 = false;
 
-  bool artVal_3 = false;
-  bool foodVal_3 = false;
-  bool outdoorsVal_3 = false;
-  bool sportsVal_3 = false;
-  bool hobbiesVal_3 = false;
-
   bool artUpdate_4 = false;
   bool foodUpdate_4 = false;
   bool outdoorsUpdate_4 = false;
   bool sportsUpdate_4 = false;
   bool hobbiesUpdate_4 = false;
-
-  bool artVal_4 = false;
-  bool foodVal_4 = false;
-  bool outdoorsVal_4 = false;
-  bool sportsVal_4 = false;
-  bool hobbiesVal_4 = false;
 
   bool artUpdate_5 = false;
   bool foodUpdate_5 = false;
@@ -61,16 +38,19 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_5 = false;
   bool hobbiesUpdate_5 = false;
 
-  bool artVal_5 = false;
-  bool foodVal_5 = false;
-  bool outdoorsVal_5 = false;
-  bool sportsVal_5 = false;
-  bool hobbiesVal_5 = false;
-
+  String firstCategory = "";
   String firstChoice = "";
+
+  String secondCategory = "";
   String secondChoice = "";
+
+  String thirdCategory = "";
   String thirdChoice = "";
+
+  String fourthCategory = "";
   String fourthChoice = "";
+
+  String fifthCategory = "";
   String fifthChoice = "";
 
   @override
@@ -128,7 +108,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_1 = false;
                             }
                             else {
-                              foodVal_1 = food;
+                              firstCategory = "Food";
                               foodUpdate_1 = food;
                             }
                           });
@@ -154,7 +134,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_1 = false;
                             }
                             else {
-                              artVal_1 = art;
+                              firstCategory = "art";
                               artUpdate_1 = art;
                             }
                           });
@@ -181,7 +161,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_1 = outdoors;
+                              firstCategory = "outdoors";
                               outdoorsUpdate_1 = outdoors;
                             }
                           });
@@ -208,7 +188,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_1 = false;
                             }
                             else {
-                              sportsVal_1 = sports;
+                              firstCategory = "sports";
                               sportsUpdate_1 = sports;
                             }
                           });
@@ -234,7 +214,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_1 = false;
                             }
                             else {
-                              hobbiesVal_1 = hobbies;
+                              firstCategory = "hobbies";
                               hobbiesUpdate_1 = hobbies;
                             }
                           });
@@ -294,7 +274,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_2 = false;
                             }
                             else {
-                              foodVal_2 = food;
+                              secondCategory = "food";
                               foodUpdate_2 = food;
                             }
                           });
@@ -320,7 +300,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_2 = false;
                             }
                             else {
-                              artVal_2 = art;
+                              secondCategory = "art";
                               artUpdate_2 = art;
                             }
                           });
@@ -347,7 +327,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_2 = outdoors;
+                              secondCategory = "outdoors";
                               outdoorsUpdate_2 = outdoors;
                             }
                           });
@@ -374,7 +354,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_2 = false;
                             }
                             else {
-                              sportsVal_2 = sports;
+                              secondCategory = "sports";
                               sportsUpdate_2 = sports;
                             }
                           });
@@ -400,7 +380,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_2 = false;
                             }
                             else {
-                              hobbiesVal_2 = hobbies;
+                              secondCategory = "hobbies";
                               hobbiesUpdate_2 = hobbies;
                             }
                           });
@@ -460,7 +440,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_3 = false;
                             }
                             else {
-                              foodVal_3 = food;
+                              thirdCategory = "food";
                               foodUpdate_3 = food;
                             }
                           });
@@ -486,7 +466,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_3 = false;
                             }
                             else {
-                              artVal_3 = art;
+                              thirdCategory = "art";
                               artUpdate_3 = art;
                             }
                           });
@@ -513,7 +493,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_3 = outdoors;
+                              thirdCategory = "outdoors";
                               outdoorsUpdate_3 = outdoors;
                             }
                           });
@@ -540,7 +520,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_3 = false;
                             }
                             else {
-                              sportsVal_3 = sports;
+                              thirdCategory = "sports";
                               sportsUpdate_3 = sports;
                             }
                           });
@@ -566,7 +546,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_3 = false;
                             }
                             else {
-                              hobbiesVal_3 = hobbies;
+                              thirdCategory= "hobbies";
                               hobbiesUpdate_3 = hobbies;
                             }
                           });
@@ -626,7 +606,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_4 = false;
                             }
                             else {
-                              foodVal_4 = food;
+                              fourthCategory = "food";
                               foodUpdate_4 = food;
                             }
                           });
@@ -652,7 +632,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_4 = false;
                             }
                             else {
-                              artVal_4 = art;
+                              fourthCategory = "art";
                               artUpdate_4 = art;
                             }
                           });
@@ -679,7 +659,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_4 = outdoors;
+                              fourthCategory = "outdoors";
                               outdoorsUpdate_4 = outdoors;
                             }
                           });
@@ -706,7 +686,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_4 = false;
                             }
                             else {
-                              sportsVal_4 = sports;
+                              fourthCategory = "sports";
                               sportsUpdate_4 = sports;
                             }
                           });
@@ -732,7 +712,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_4 = false;
                             }
                             else {
-                              hobbiesVal_4 = hobbies;
+                              fourthCategory = "hobbies";
                               hobbiesUpdate_4 = hobbies;
                             }
                           });
@@ -792,7 +772,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_5 = false;
                             }
                             else {
-                              foodVal_5 = food;
+                              fifthCategory = "food";
                               foodUpdate_5 = food;
                             }
                           });
@@ -818,7 +798,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_5 = false;
                             }
                             else {
-                              artVal_5 = art;
+                              fifthCategory = "art";
                               artUpdate_5 = art;
                             }
                           });
@@ -845,7 +825,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              outdoorsVal_5 = outdoors;
+                              fifthCategory = "outdoors";
                               outdoorsUpdate_5 = outdoors;
                             }
                           });
@@ -872,7 +852,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_5 = false;
                             }
                             else {
-                              sportsVal_5 = sports;
+                              fifthCategory = "sports";
                               sportsUpdate_5 = sports;
                             }
                           });
@@ -898,7 +878,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_5 = false;
                             }
                             else {
-                              hobbiesVal_5 = hobbies;
+                              fifthCategory = "hobbies";
                               hobbiesUpdate_5 = hobbies;
                             }
                           });
@@ -928,6 +908,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
               raisedButton,
+              
             ]
         )
     );
