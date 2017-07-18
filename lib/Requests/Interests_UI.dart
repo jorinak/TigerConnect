@@ -83,35 +83,35 @@ class _InterestsState extends State<Interests> {
 
   // helper method that updates values depending on chosen categories
   updateInt() {
-    if      (artUpdate_1)      cat1 = 1;
-    else if (foodUpdate_1)     cat1 = 3;
-    else if (outdoorsUpdate_1) cat1 = 4;
-    else if (sportsUpdate_5)   cat1 = 2;
-    else if (hobbiesUpdate_1)  cat1 = 5;
+    if      (artVal_1)      cat1 = 1;
+    else if (foodVal_1)     cat1 = 3;
+    else if (outdoorsVal_1) cat1 = 4;
+    else if (sportsVal_1)   cat1 = 2;
+    else if (hobbiesVal_1)  cat1 = 5;
 
-    if      (artUpdate_2)      cat2 = 1;
-    else if (foodUpdate_2)     cat2 = 3;
-    else if (outdoorsUpdate_2) cat2 = 4;
-    else if (sportsUpdate_2)   cat2 = 2;
-    else if (hobbiesUpdate_2)  cat2 = 5;
+    if      (artVal_2)      cat2 = 1;
+    else if (foodVal_2)     cat2 = 3;
+    else if (outdoorsVal_2) cat2 = 4;
+    else if (sportsVal_2)   cat2 = 2;
+    else if (hobbiesVal_2)  cat2 = 5;
 
-    if      (artUpdate_3)      cat3 = 1;
-    else if (foodUpdate_3)     cat3 = 3;
-    else if (outdoorsUpdate_3) cat3 = 4;
-    else if (sportsUpdate_3)   cat3 = 2;
-    else if (hobbiesUpdate_3)  cat3 = 5;
+    if      (artVal_3)      cat3 = 1;
+    else if (foodVal_3)     cat3 = 3;
+    else if (outdoorsVal_3) cat3 = 4;
+    else if (sportsVal_3)   cat3 = 2;
+    else if (hobbiesVal_3)  cat3 = 5;
 
-    if      (artUpdate_4)      cat4 = 1;
-    else if (foodUpdate_4)     cat4 = 3;
-    else if (outdoorsUpdate_4) cat4 = 4;
-    else if (sportsUpdate_4)   cat4 = 2;
-    else if (hobbiesUpdate_4)  cat4 = 5;
+    if      (artVal_4)      cat4 = 1;
+    else if (foodUpdate_5)     cat4 = 3;
+    else if (outdoorsVal_4) cat4 = 4;
+    else if (sportsVal_4)   cat4 = 2;
+    else if (hobbiesVal_4)  cat4 = 5;
 
-    if      (artUpdate_5)      cat5 = 1;
-    else if (foodUpdate_5)     cat5 = 3;
-    else if (outdoorsUpdate_5) cat5 = 4;
-    else if (sportsUpdate_5)   cat5 = 2;
-    else if (hobbiesUpdate_5)  cat5 = 5;
+    if      (artVal_5)      cat5 = 1;
+    else if (foodVal_5)     cat5 = 3;
+    else if (outdoorsVal_5) cat5 = 4;
+    else if (sportsVal_5)   cat5 = 2;
+    else if (hobbiesVal_5)  cat5 = 5;
   }
 
   // helper method that makes a get request to add interest preferences
