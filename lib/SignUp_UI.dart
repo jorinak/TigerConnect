@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'globals.dart' as globals;
 
 class SignUp extends StatefulWidget {
 
@@ -29,6 +30,7 @@ class SignUpState extends State<SignUp> {
       // Return "Username already exists."
     }
     else {
+      globals.user_id = id;
       Navigator.of(context).pushNamed("/ProfileInfo");
     }
   }
