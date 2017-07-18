@@ -20,15 +20,15 @@ class FriendlyChatState extends State<FriendlyChat> with TickerProviderStateMixi
       message.animationController.dispose();
     super.dispose();
   }
-  void _handleSubmitted(String text) {
+  void _handleSubmitted(String something) {
     _textController.clear();
     setState(() {
       _isComposing = false;
     });
     ChatMessage message = new ChatMessage(
-      text: text,
+      text: something,
       animationController: new AnimationController(
-        duration: new Duration(milliseconds: 150),
+        duration: new Duration(milliseconds: 300),
         vsync: this,
       ),
     );
@@ -40,19 +40,7 @@ class FriendlyChatState extends State<FriendlyChat> with TickerProviderStateMixi
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: buildAppBar(context),
-      body: buildChatScreen(context),
-    );
-  }
-
-  buildAppBar(BuildContext context) {
-    new AppBar(
-      title: new Text("FriendlyChat"),
-    );
-  }
-
-  buildChatScreen(BuildContext context) {
+    return
     new Column(
       children: <Widget>[
         new Flexible(
@@ -75,6 +63,7 @@ class FriendlyChatState extends State<FriendlyChat> with TickerProviderStateMixi
   }
 
   Widget _buildTextComposer() {
+
     return new IconTheme(
         data: new IconThemeData(color: Theme.of(context).accentColor),
         child: new Container(
@@ -92,6 +81,7 @@ class FriendlyChatState extends State<FriendlyChat> with TickerProviderStateMixi
                     onSubmitted: _handleSubmitted,
                     decoration: new InputDecoration.collapsed(
                         hintText: "Send a message"),
+                    maxLines: 5,
                   ),
                 ),
                 new Container(
@@ -121,10 +111,14 @@ class FriendlyChatState extends State<FriendlyChat> with TickerProviderStateMixi
 class ChatMessage extends StatelessWidget {
   ChatMessage({this.text, this.animationController});
   final String text;
+
   final AnimationController animationController;
+
   @override
   Widget build(BuildContext context) {
     const String _name = "Edwin";
+
+    var checkedString = _checkString();
 
     return new SizeTransition(
         sizeFactor: new CurvedAnimation(
@@ -138,17 +132,20 @@ class ChatMessage extends StatelessWidget {
           child: new Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+
               new Container(
                 margin: const EdgeInsets.only(right: 16.0),
                 child: new CircleAvatar(child: new Text(_name[0])),
               ),
               new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: <Widget>[
                   new Text(_name, style: Theme.of(context).textTheme.subhead),
+
                   new Container(
                     margin: const EdgeInsets.only(top: 5.0),
-                    child: new Text(text),
+                    child: new Text(checkedString),
                   ),
                 ],
               ),
@@ -156,5 +153,31 @@ class ChatMessage extends StatelessWidget {
           ),
         )
     );
+  }
+
+  String _checkString() {
+
+    var magicNum = 30;
+    var loopTimes = (text.length/magicNum).toInt();
+    var tempString = "";
+    int start = 0;
+    int endChar = magicNum;
+
+
+    if (loopTimes < 1)
+      return text;
+
+    else {
+      for (int i = 0; i < loopTimes; i++) {
+
+        tempString += text.substring(start, endChar) + "\n";
+
+        start = start + magicNum;
+        endChar = endChar + magicNum;
+
+      }
+      tempString += text.substring(start, text.length);
+      return tempString;
+    }
   }
 }
