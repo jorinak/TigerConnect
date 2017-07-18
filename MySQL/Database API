@@ -1,0 +1,48 @@
+Database API
+
+General:
+verifyUser(username_input VARCHAR(20), password_input VARCHAR(20), OUT valid BOOLEAN, OUT user_id INT)
+  Function: verify user upon log-in
+  Returns: boolean value for validity. If valid, returns the user’s id number (save in server)
+
+getProfile(id INT)
+  Function: given user id outputs basic info, personality info and special interests
+  Returns: basic_info and specific_interests
+
+createBasicInfo (id INT, firstname VARCHAR(45), lastname VARCHAR(45), classyear INT, description LONGTEXT, major VARCHAR(45), rescollege VARCHAR(45))
+
+createInterest (user_id INT, category_name VARCHAR(45), specific_interest VARCHAR(45), rank INT)
+
+createPersonality(user_id INT, personality_id INT, scale INT)
+
+createUser(username_input VARCHAR(45), password_input VARCHAR(45), email_input VARCHAR(45))
+
+getConnections(id INT)
+
+getProfile(id INT)
+
+interestsRank(userID INT)
+
+personalityRank(id INT)
+
+verifyUser(IN username_input VARCHAR(20), IN password_input VARCHAR(20))
+
+
+Chat Methods:
+sendMessage(sender_id INT, reciever_id INT, mess_body LONGTEXT)
+  Function: creates message and conversation (if applicable)
+  Returns: N/A
+  
+checkMessages(user INT)
+  Function: outputs all messages not received where user is the recipient (changes is_recieved value)
+  Returns: new messages
+  
+showConversation(user_current INT, user_B INT)
+  Function: outputs all messages in a conversation starting with most recent (changes is_read value) 
+  Returns: all messages in given conversation
+  
+unreadMessages(user_current int)
+  Function: outputs all unread messages where user is the recipient
+  Returns: unread messages
+  Intended use: for chat notifications
+		
