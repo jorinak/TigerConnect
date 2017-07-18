@@ -32,7 +32,13 @@ public class SignIn extends HttpServlet {
 				stmt.setString("password_input", pass);
 				rs = stmt.executeQuery();
 				rs.next();
-				writer.println(rs.getBoolean("@valid"));	
+				boolean result = rs.getBoolean("@valid");
+				int id = rs.getInt("@user_id");
+				if (result)
+					writer.println(id);
+				else
+					writer.println(result);
+
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
