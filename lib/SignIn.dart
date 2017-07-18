@@ -17,7 +17,7 @@ class SignInState extends State<SignIn> {
   String password = "";
 
   String username = "";
-  
+
   // helper method that makes a get request to verify user account
   checkData() async {
     var httpClient = createHttpClient();
@@ -26,6 +26,7 @@ class SignInState extends State<SignIn> {
     String reply = response.body;
     if (reply == 'false\n') {
       // Display the text "Invalid credentials".
+      new Text("Invalid Credentials");
     } else {
       globals.user_id = int.parse(reply);
       print(globals.user_id);
@@ -37,38 +38,38 @@ class SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
 
     var paddingUsr = new Padding(
-        padding: const EdgeInsets.only(right: 70.0, left: 70.0),
-        child: new TextField(
-            decoration: new InputDecoration(
+      padding: const EdgeInsets.only(right: 70.0, left: 70.0),
+      child: new TextField(
+          decoration: new InputDecoration(
 
-                hintText: "Username",
+              hintText: "Username",
 
-                labelText: "Username"
-            ),
+              labelText: "Username"
+          ),
 
-            onChanged: (String inputUsr) {
-              setState(() {
-                username = inputUsr;
-              });
-            }
-        ),
+          onChanged: (String inputUsr) {
+            setState(() {
+              username = inputUsr;
+            });
+          }
+      ),
     );
 
     var paddingPass = new Padding(
-        padding: const EdgeInsets.only(right: 70.0, left: 70.0),
-        child: new TextField(
-          decoration: new InputDecoration(
-              hintText: "Password",
-              labelText: "Password"
-          ),
-
-          // replaces the text with dots
-          obscureText: true,
-          onChanged: (String inputPass) {
-            password = inputPass;
-            passwordFieldContent = inputPass;
-          },
+      padding: const EdgeInsets.only(right: 70.0, left: 70.0),
+      child: new TextField(
+        decoration: new InputDecoration(
+            hintText: "Password",
+            labelText: "Password"
         ),
+
+        // replaces the text with dots
+        obscureText: true,
+        onChanged: (String inputPass) {
+          password = inputPass;
+          passwordFieldContent = inputPass;
+        },
+      ),
     );
 
     var _iconButton = new Padding(
@@ -109,4 +110,3 @@ class SignInState extends State<SignIn> {
     );
   }
 }
-

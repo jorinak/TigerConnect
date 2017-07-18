@@ -16,7 +16,7 @@ class SignUpState extends State<SignUp> {
   String newUsername = "";
   String newPassword = "";
   String passwordFieldContent;
-  
+
   // helper method that makes a get request to add user account
   inputData() async {
     var httpClient = createHttpClient();
@@ -26,9 +26,11 @@ class SignUpState extends State<SignUp> {
     int id = int.parse(result);
     if (id < 0) {
       // Return "Existing account already associated with email."};
+      new Text("Existing account already associated with email.");
     }
     else if (id == 0) {
       // Return "Username already exists."
+      new Text("Username already exists");
     }
     else {
       globals.user_id = id;
@@ -43,8 +45,8 @@ class SignUpState extends State<SignUp> {
       padding: const EdgeInsets.only(right: 70.0, left: 70.0),
       child: new TextField(
         decoration: new InputDecoration(
-            hintText: "Princeton Email",
-            labelText: "Princeton Email",),
+          hintText: "Princeton Email",
+          labelText: "Princeton Email",),
         onChanged: (String _email) {
           setState(() {
             email = _email;
@@ -87,32 +89,32 @@ class SignUpState extends State<SignUp> {
     );
 
     return new Container(
-        child: new Center(
-            child: new Column(
-               mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+      child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
 
-                  paddingEmail,
+              paddingEmail,
 
-                  paddingUsr,
+              paddingUsr,
 
-                  paddingPass,
+              paddingPass,
 
-                new IconButton(
-                  icon: new Icon(
+              new IconButton(
+                icon: new Icon(
                     Icons.blur_circular,
                     color: Colors.orange),
-                  iconSize: 70.0,
-                  onPressed: () {
-                      inputData();
-                  },
-                ),
+                iconSize: 70.0,
+                onPressed: () {
+                  inputData();
+                },
+              ),
 
-                new Text("Sign Up", textAlign: TextAlign.center,),
-                  
-              ],
+              new Text("Sign Up", textAlign: TextAlign.center,),
+
+            ],
           )
-        ),
-      );
+      ),
+    );
   }
 }
