@@ -10,15 +10,18 @@ INTO @currentScale;
 
 UPDATE connection_ranking 
 SET rank = rank + 1
-WHERE (user1 = id AND user2  IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale));
+WHERE (user1 = id AND user2  IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale AND personality_done = false));
 
 UPDATE connection_ranking 
 SET rank = rank + 1
-WHERE (user1 IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale) AND user2 = id);
-
-
+WHERE (user1 IN(SELECT user_id FROM personality WHERE personality_id = @count AND scale = @currentScale  AND personality_done = false) AND user2 = id);
 
 SET @count = @count + 1;
 
 END WHILE;
+
+UPDATE connection_ranking
+SET personality_done = true
+WHERE user1 = id OR user2 = id;
+
 END
