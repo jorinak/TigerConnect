@@ -10,7 +10,6 @@ import 'package:tiger_connect/SavedChats.dart';
 import 'package:tiger_connect/SignIn.dart';
 import 'package:tiger_connect/SignUp.dart';
 
-
 void main() {
 
   // command to make and run a new app
@@ -34,7 +33,8 @@ void main() {
           "/Categories" : (BuildContext context) => new Categories(),
           "/FriendlyChatter" : (BuildContext context) => new FriendlyChatter(),
           "/SavedChats" : (BuildContext context) => new SavedChats(),
-          "/MessageFriend" : (BuildContext context) => new MessageFriend()
+          "/MessageFriend" : (BuildContext context) => new MessageFriend(),
+          "/CreateConnect" : (BuildContext context) => new CreateConnect(),
         }
       )
   );
@@ -141,7 +141,6 @@ class HomeProfilePageState extends State<HomeProfilePage> {
         new CircleAvatar(
           backgroundImage: new AssetImage('images/tiger.jpg'),
         ),
-
       ],
     );
 
@@ -224,7 +223,7 @@ class HomeProfilePageState extends State<HomeProfilePage> {
 
     // the drawers child: a ListView which can have
     // more than one child
-    var child1 = new ListView(children: children,);
+    var child1 = new ListView(children: children, );
 
     // creates a drawer: on the top left side of the screen
     // only takes one child (i can only add 1 widget to it)
@@ -256,6 +255,162 @@ class HomeProfilePageState extends State<HomeProfilePage> {
     );
   }
 }
+
+class CreateConnect extends StatefulWidget {
+  @override
+  _CreateConnectState createState() => new _CreateConnectState();
+}
+
+class _CreateConnectState extends State<CreateConnect> {
+  @override
+  Widget build(BuildContext context) {
+
+
+    var stack = new Stack(
+      alignment: const FractionalOffset(0.8, 0.8),
+      fit: StackFit.expand,
+      overflow: Overflow.visible,
+      children: <Widget>[
+        new CircleAvatar(
+          backgroundImage: new AssetImage('images/tiger.jpg'),
+        ),
+      ],
+    );
+
+    // the icon that appears at the top of the drawer screen
+    Padding padding = new Padding(
+        child: stack,
+
+
+        padding: const EdgeInsets.only(bottom: 20.0)
+    );
+
+    var drawerHeader = new DrawerHeader(
+      child: new IconButton(
+          icon: padding, onPressed: null),
+    );
+
+    // the ListView children
+    var children = <Widget>[
+
+      drawerHeader,
+
+      // ListTiles will allow the user to access their, for example,
+      // friend list, page to edit their profile, settings etc.
+      // CURRENTLY STUCK ON THIS!!!!!
+
+      new ListTile(
+        title: const Text("Profile"),
+        enabled: true,
+        trailing: const Icon(Icons.account_circle),
+      ),
+
+      new Divider(),
+
+      new ListTile(
+        title: const Text("Friends"),
+        enabled: true,
+        trailing: const Icon(Icons.contacts),
+        onTap: () {Navigator.of(context).pushNamed("/FriendsPage");},
+      ),
+
+      new Divider(),
+
+      new ListTile(
+        title: const Text("Chats"),
+        enabled: true,
+        trailing: const Icon(Icons.message),
+        onTap: () {Navigator.of(context).pushNamed("/FriendlyChatter");},
+      ),
+
+      new Divider(),
+
+      new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          new Column(
+            children: <Widget>[
+              new Text("Settings"),
+              new Divider(),
+              new IconButton(icon: new Icon(Icons.settings),
+                  onPressed: null)
+            ],
+          ),
+
+          new Divider(),
+
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              new Text("Help"),
+              new Divider(),
+              new IconButton(icon: new Icon(Icons.help),
+                  onPressed: null)
+            ],
+          )
+        ],
+      )
+
+
+    ];
+
+    // the drawers child: a ListView which can have
+    // more than one child
+    var child1 = new ListView(children: children, );
+
+    // creates a drawer: on the top left side of the screen
+    // only takes one child (i can only add 1 widget to it)
+    Drawer drawer = new Drawer(child: child1);
+
+    return new Scaffold(drawer: drawer,
+
+        appBar: new AppBar(
+          title: new Text("TigerConnect",
+            style: new TextStyle(
+                color: Colors.orange),
+          ),
+          backgroundColor: Colors.black,
+          actions: <Widget>[
+
+            // the search icon at the top right of the screen
+            new IconButton(
+              icon: new Icon(Icons.search),
+
+              // redirects to a page where the user can search for new "connects"
+              onPressed: () { Navigator.of(context).pushNamed("/SearchPage");
+              },
+            ),
+          ],
+        ),
+
+        // place holder
+        body: new Container(
+          child: new Center(
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text("You dont have any connections yet"),
+
+                new Divider(color: Colors.white,),
+
+                new RaisedButton(
+                    child: new Text("Click Me" + "\n" + "To Connect",
+                      style: new TextStyle(color: Colors.orangeAccent,),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                    color: Colors.black,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/HomeProfilePage");},),
+              ],
+            ),
+          ),
+        )
+    );
+
+  }
+}
+
 
 // under construction, but its supposed to be the page
 // with the list of the users friends

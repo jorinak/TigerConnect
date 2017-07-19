@@ -18,22 +18,6 @@ class SignInState extends State<SignIn> {
 
   String username = "";
 
-  // helper method that makes a get request to verify user account
-  checkData() async {
-    var httpClient = createHttpClient();
-    var response = await httpClient.get(
-        'http://localhost:8080/tiger-connect/signin?username=${username}&password=${password}');
-    String reply = response.body;
-    if (reply == 'false\n') {
-      // Display the text "Invalid credentials".
-      new Text("Invalid Credentials");
-    } else {
-      globals.user_id = int.parse(reply);
-      print(globals.user_id);
-      Navigator.of(context).pushNamed("/HomeProfilePage");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -81,8 +65,7 @@ class SignInState extends State<SignIn> {
         ),
         iconSize: 60.0,
         onPressed: () {
-          checkData();
-        },
+          Navigator.of(context).pushNamed("/CreateConnect");},
       ),
     );
 

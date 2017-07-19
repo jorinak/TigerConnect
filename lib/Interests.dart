@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'globals.dart' as globals;
 
 class Interests extends StatefulWidget {
   @override
@@ -40,27 +38,27 @@ class _InterestsState extends State<Interests> {
   bool sportsUpdate_5 = false;
   bool hobbiesUpdate_5 = false;
 
+  String firstCategory = "";
   String firstChoice = "";
+
+  String secondCategory = "";
   String secondChoice = "";
+
+  String thirdCategory = "";
   String thirdChoice = "";
+
+  String fourthCategory = "";
   String fourthChoice = "";
+
+  String fifthCategory = "";
   String fifthChoice = "";
 
-  int cat1 = -1;
-  int cat2 = -1;
-  int cat3 = -1;
-  int cat4 = -1;
-  int cat5 = -1;
-
-  // helper method that makes a get request to add interest preferences
-  inputData() async {
-    var httpClient = createHttpClient();
-    var response = await httpClient.get(
-        'http://localhost:8080/tiger-connect/interest?id=${globals.user_id}&c1=${cat1}&c2=${cat2}&c3=${cat3}&c4=${cat4}&c5=${cat5}&s1=${firstChoice}&s2=${secondChoice}&s3=${thirdChoice}&s4=${fourthChoice}&s5=${fifthChoice}');
-    print(response.statusCode);
-    print(response.body);
-    Navigator.of(context).pushNamed("/HomeProfilePage");
-  }
+  var categoryText = new Text("Choose one interest",
+    style: new TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 15.0),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +74,7 @@ class _InterestsState extends State<Interests> {
                 fontSize: 18.0),
           ),
           color: Colors.black,
-          onPressed: () {
-            inputData();
-          },
+          onPressed: () {Navigator.of(context).pushNamed("/CreateConnect");},
         )
     );
 
@@ -89,12 +85,7 @@ class _InterestsState extends State<Interests> {
             padding: const EdgeInsets.only(top: 25.0, left: 20.0, right: 30.0),
             children: <Widget>[
 
-              new Text("1. Choose your top interest!",
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
+              categoryText,
 
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,7 +97,7 @@ class _InterestsState extends State<Interests> {
                     children: <Widget>[
                       new Text("Food",
                         style: new TextStyle(
-                            fontSize: 12.0
+                        fontSize: 12.0
                         ),
                       ),
                       new Checkbox(
@@ -119,7 +110,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_1 = false;
                             }
                             else {
-                              cat1 = 3;
+                              firstCategory = "Food";
                               foodUpdate_1 = food;
                             }
                           });
@@ -132,7 +123,7 @@ class _InterestsState extends State<Interests> {
                     children: <Widget>[
                       new Text("Arts",
                         style: new TextStyle(
-                            fontSize: 12.0
+                          fontSize: 12.0
                         ),
                       ),
                       new Checkbox(
@@ -145,7 +136,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_1 = false;
                             }
                             else {
-                              cat1 = 1;
+                              firstCategory = "art";
                               artUpdate_1 = art;
                             }
                           });
@@ -158,7 +149,7 @@ class _InterestsState extends State<Interests> {
                     children: <Widget>[
                       new Text("Outdoors",
                         style: new TextStyle(
-                            fontSize: 12.0
+                          fontSize: 12.0
                         ),
                       ),
                       new Checkbox(
@@ -172,7 +163,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              cat1 = 4;
+                              firstCategory = "outdoors";
                               outdoorsUpdate_1 = outdoors;
                             }
                           });
@@ -184,9 +175,9 @@ class _InterestsState extends State<Interests> {
                   new Column(
                     children: <Widget>[
                       new Text("Sports" + "\n" + " and" + "\n" + "Fitness",
-                        textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                         style: new TextStyle(
-                            fontSize: 12.0
+                          fontSize: 12.0
                         ),
                       ),
                       new Checkbox(
@@ -199,7 +190,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_1 = false;
                             }
                             else {
-                              cat1 = 2;
+                              firstCategory = "sports";
                               sportsUpdate_1 = sports;
                             }
                           });
@@ -212,7 +203,7 @@ class _InterestsState extends State<Interests> {
                     children: <Widget>[
                       new Text("Hobbies",
                         style: new TextStyle(
-                            fontSize: 12.0
+                          fontSize: 12.0
                         ),
                       ),
                       new Checkbox(
@@ -225,7 +216,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_1 = false;
                             }
                             else {
-                              cat1 = 5;
+                              firstCategory = "hobbies";
                               hobbiesUpdate_1 = hobbies;
                             }
                           });
@@ -238,7 +229,7 @@ class _InterestsState extends State<Interests> {
               ),
 
               new Padding(
-                padding: const EdgeInsets.only(right: 78.0, left: 78.0),
+                  padding: const EdgeInsets.only(right: 78.0, left: 78.0),
                 child: new TextField(
                   decoration: new InputDecoration(
                     hintText: "Optional: Specify your choice",
@@ -255,12 +246,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
 
-              new Text("2. Choose your second interest!",
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
+              categoryText,
 
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -285,7 +271,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_2 = false;
                             }
                             else {
-                              cat2 = 3;
+                              secondCategory = "food";
                               foodUpdate_2 = food;
                             }
                           });
@@ -311,7 +297,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_2 = false;
                             }
                             else {
-                              cat2 = 1;
+                              secondCategory = "art";
                               artUpdate_2 = art;
                             }
                           });
@@ -338,7 +324,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              cat2 = 4;
+                              secondCategory = "outdoors";
                               outdoorsUpdate_2 = outdoors;
                             }
                           });
@@ -365,7 +351,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_2 = false;
                             }
                             else {
-                              cat2 = 2;
+                              secondCategory = "sports";
                               sportsUpdate_2 = sports;
                             }
                           });
@@ -391,7 +377,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_2 = false;
                             }
                             else {
-                              cat2 = 5;
+                              secondCategory = "hobbies";
                               hobbiesUpdate_2 = hobbies;
                             }
                           });
@@ -421,12 +407,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
 
-              new Text("3. Choose your third interest!",
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
+              categoryText,
 
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -451,7 +432,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_3 = false;
                             }
                             else {
-                              cat3 = 3;
+                              thirdCategory = "food";
                               foodUpdate_3 = food;
                             }
                           });
@@ -477,7 +458,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_3 = false;
                             }
                             else {
-                              cat3 = 1;
+                              thirdCategory = "art";
                               artUpdate_3 = art;
                             }
                           });
@@ -504,7 +485,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              cat3 = 4;
+                              thirdCategory = "outdoors";
                               outdoorsUpdate_3 = outdoors;
                             }
                           });
@@ -531,7 +512,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_3 = false;
                             }
                             else {
-                              cat3 = 2;
+                              thirdCategory = "sports";
                               sportsUpdate_3 = sports;
                             }
                           });
@@ -557,7 +538,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_3 = false;
                             }
                             else {
-                              cat3 = 5;
+                              thirdCategory= "hobbies";
                               hobbiesUpdate_3 = hobbies;
                             }
                           });
@@ -587,12 +568,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
 
-              new Text("4. Choose your fourth interest!",
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
+              categoryText,
 
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -617,7 +593,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_4 = false;
                             }
                             else {
-                              cat4 = 3;
+                              fourthCategory = "food";
                               foodUpdate_4 = food;
                             }
                           });
@@ -643,7 +619,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_4 = false;
                             }
                             else {
-                              cat4 = 1;
+                              fourthCategory = "art";
                               artUpdate_4 = art;
                             }
                           });
@@ -670,7 +646,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              cat4 = 4;
+                              fourthCategory = "outdoors";
                               outdoorsUpdate_4 = outdoors;
                             }
                           });
@@ -697,7 +673,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_4 = false;
                             }
                             else {
-                              cat4 = 2;
+                              fourthCategory = "sports";
                               sportsUpdate_4 = sports;
                             }
                           });
@@ -723,7 +699,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_4 = false;
                             }
                             else {
-                              cat4 = 5;
+                              fourthCategory = "hobbies";
                               hobbiesUpdate_4 = hobbies;
                             }
                           });
@@ -753,12 +729,7 @@ class _InterestsState extends State<Interests> {
                 ),
               ),
 
-              new Text("5. Choose your fifth interest!",
-                style: new TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
+              categoryText,
 
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -783,7 +754,7 @@ class _InterestsState extends State<Interests> {
                               foodUpdate_5 = false;
                             }
                             else {
-                              cat5 = 3;
+                              fifthCategory = "food";
                               foodUpdate_5 = food;
                             }
                           });
@@ -809,7 +780,7 @@ class _InterestsState extends State<Interests> {
                               artUpdate_5 = false;
                             }
                             else {
-                              cat5 = 1;
+                              fifthCategory = "art";
                               artUpdate_5 = art;
                             }
                           });
@@ -836,7 +807,7 @@ class _InterestsState extends State<Interests> {
                             }
 
                             else {
-                              cat5 = 4;
+                              fifthCategory = "outdoors";
                               outdoorsUpdate_5 = outdoors;
                             }
                           });
@@ -863,7 +834,7 @@ class _InterestsState extends State<Interests> {
                               sportsUpdate_5 = false;
                             }
                             else {
-                              cat5 = 2;
+                              fifthCategory = "sports";
                               sportsUpdate_5 = sports;
                             }
                           });
@@ -889,7 +860,7 @@ class _InterestsState extends State<Interests> {
                               hobbiesUpdate_5 = false;
                             }
                             else {
-                              cat5 = 5;
+                              fifthCategory = "hobbies";
                               hobbiesUpdate_5 = hobbies;
                             }
                           });

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'globals.dart' as globals;
+
 
 
 class BasicInfo extends StatefulWidget {
@@ -23,16 +22,11 @@ class BasicInfoState extends State<BasicInfo> {
   String major = "";
 
   String shortDescription = "";
-  
-  // helper method that makes a get request to add user preferences
-  inputData() async {
-    var httpClient = createHttpClient();
-    var response = await httpClient.get(
-        'http://localhost:8080/tiger-connect/basicinfo?id=${globals.user_id}&fname=${firstName}&lname=${lastName}&cyear=${classYear}&blurb=${shortDescription}&major=${major}&rcollege=${resCollege}');
-    print(response.statusCode);
-    print(response.body);
-    Navigator.of(context).pushNamed("/Personality");
-  }
+
+  String otherTracker = "";
+
+  var charCounter = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +41,7 @@ class BasicInfoState extends State<BasicInfo> {
                 fontSize: 18.0),
           ),
             color: Colors.black,
-            onPressed: () {
-              inputData();
-            },
+            onPressed: () {Navigator.of(context).pushNamed("/Personality");},
         )
     );
 
@@ -132,14 +124,28 @@ class BasicInfoState extends State<BasicInfo> {
             hintText: "Short description",
           ),
 
+
           onChanged: (String _description) {
             setState(() {
+
               shortDescription = _description;
+
+              if (shortDescription.length < otherTracker.length)
+                charCounter--;
+
+
+              else if(shortDescription.length > otherTracker.length)
+                charCounter++;
+
+              otherTracker = _description;
             });
           },
 
           maxLines: 4,
         ),
+
+        new Text(charCounter.toString() + "/220",
+          textAlign: TextAlign.center,),
 
         raisedButton,
       ],
