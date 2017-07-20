@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter/services.dart';
+import 'globals.dart' as globals;
 
 class BasicInfo extends StatefulWidget {
 
