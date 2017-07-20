@@ -49,14 +49,25 @@ class SignInState extends State<SignIn> {
     globals.u4_description = entries[44];
     globals.u5_description = entries[57];
 
-    globals.u1_description = entries[5];
+    globals.u1_major = entries[6];
+    globals.u2_major = entries[19];
+    globals.u3_major = entries[32];
+    globals.u4_major = entries[45];
+    globals.u5_major = entries[58];
 
+    globals.u1_rescollege = entries[7];
+    globals.u2_rescollege = entries[20];
+    globals.u3_rescollege = entries[33];
+    globals.u4_rescollege = entries[46];
+    globals.u5_rescollege = entries[59];
 
+    globals.u1_interests = entries[8] + ", " + entries[9] + ", " + entries[10] + ", " + entries[11] + ", " + entries[12] + ".";
+    globals.u2_interests = entries[21] + ", " + entries[22] + ", " + entries[23] + ", " + entries[24] + ", " + entries[25] + ".";
+    globals.u3_interests = entries[34] + ", " + entries[35] + ", " + entries[36] + ", " + entries[37] + ", " + entries[38] + ".";
+    globals.u4_interests = entries[47] + ", " + entries[48] + ", " + entries[49] + ", " + entries[50] + ", " + entries[51] + ".";
+    globals.u5_interests = entries[60] + ", " + entries[61] + ", " + entries[62] + ", " + entries[63] + ", " + entries[64] + ".";
 
-
-
-    print(reply);
-    //Navigator.of(context).pushNamed("/HomeProfilePage");
+    Navigator.of(context).pushNamed("/HomeProfilePage");
   }
 
   // helper method that makes a get request to verify user account
