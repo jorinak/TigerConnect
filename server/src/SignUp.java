@@ -33,7 +33,7 @@ public class SignUp extends HttpServlet {
 				stmt = conn.prepareCall("{CALL createUser(?, ?, ?)}");
 				stmt.setString("username_input", username);
 				stmt.setString("password_input", pass);
-				stmt.setString("email_input", pass);
+				stmt.setString("email_input", email);
 				rs = stmt.executeQuery();
 				rs.next();
 				int id = rs.getInt("@id");
