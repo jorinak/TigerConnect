@@ -20,8 +20,22 @@ class _PersonalitySlidersState extends State<PersonalitySliders> {
   double _extraversion = 0.0;
   double _agreeable = 0.0;
   double _stability = 0.0;
-
-
+  
+  // helper method that makes a get request to add personality preferences
+  inputData() async {
+    int o = _openness.toInt();
+    int c = _conscientiousness.toInt();
+    int e = _extraversion.toInt();
+    int a = _agreeable.toInt();
+    int n = _stability.toInt();
+    var httpClient = createHttpClient();
+    var response = await httpClient.get(
+        'http://localhost:8080/tiger-connect/personality?id=${globals.user_id}&scale1=${o}&scale2=${c}&scale3=${e}&scale4=${a}&scale5=${n}');
+    print(response.statusCode);
+    print(response.body);
+    Navigator.of(context).pushNamed("/Categories");
+  }
+  
   @override
   Widget build(BuildContext context) {
 
@@ -35,7 +49,7 @@ class _PersonalitySlidersState extends State<PersonalitySliders> {
                 fontSize: 18.0),
           ),
           color: Colors.black,
-          onPressed: () {Navigator.of(context).pushNamed("/Categories");},
+          onPressed: () {inputData();},
         )
     );
 
