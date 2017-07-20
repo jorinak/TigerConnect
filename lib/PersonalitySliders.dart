@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tiger_connect/CupertinoWidgets.dart';
+import 'package:flutter/services.dart';
+import 'globals.dart' as globals;
 
 class PersonalitySliders extends StatefulWidget {
   @override
