@@ -1,7 +1,7 @@
 package com.tigerconnect;
 
 import java.io.IOException;
-//import java.io.PrintWriter;
+import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +14,11 @@ import com.tigerconnect.dao.DbUtils;
 public class Connections extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		int id = Integer.parseInt(request.getParameter("id"));
-
+		
 		if (id >= 0) {
+			// update rankings based on matching personalities
 			DbUtils dbUtils1 = new DbUtils();
 			Connection conn1 = null;
 			CallableStatement stmt1 = null;
@@ -38,6 +39,7 @@ public class Connections extends HttpServlet {
 				dbUtils1.closeConnection(conn1);
 			}
 
+			// update rankings based on matching interests
 			DbUtils dbUtils2 = new DbUtils();
 			Connection conn2 = null;
 			CallableStatement stmt2 = null;
@@ -53,11 +55,13 @@ public class Connections extends HttpServlet {
 				e.printStackTrace();
 			}
 			finally {
-				dbUtils2.closeResultSet(rs2);
+				dbUtils1.closeResultSet(rs2);
 				dbUtils2.closeStatement(stmt2);
 				dbUtils2.closeConnection(conn2);
 			}
 
+			// get the top five connections
+			PrintWriter writer = response.getWriter();
 			DbUtils dbUtils3 = new DbUtils();
 			Connection conn3 = null;
 			CallableStatement stmt3 = null;
@@ -67,9 +71,15 @@ public class Connections extends HttpServlet {
 				stmt3 = conn3.prepareCall("{CALL getConnections(?)}");
 				stmt3.setInt("id",  id);
 				rs3 = stmt3.executeQuery();
-				while(rs3.next()) {
-					System.out.println("User: " + rs3.getInt("connect_id") + ", " + rs3.getInt("rank") + ", " + rs3.getString("first_name") + ", " + rs3.getString("last_name") + ", " + rs3.getString("class_year") + ", " + rs3.getString("description") + ", " + rs3.getString("major") + ", " + rs3.getString("residential_college") + ", " + rs3.getString("interests"));
+				String result = "";
+				while(rs3.next()) {		
+					result += rs3.getInt("connect_id") + "," + rs3.getInt("rank") + "," + rs3.getString("first_name")
+					+ "," + rs3.getString("last_name") + "," + rs3.getInt("class_year") + "," + rs3.getString("description")
+					+ "," + rs3.getString("major") + "," + rs3.getString("residential_college") + "," + rs3.getString("interests")
+					+ ",";
 				}
+				System.out.println(result);
+				writer.println(result);
 			}
 			catch (Exception e) {
 				e.printStackTrace();
