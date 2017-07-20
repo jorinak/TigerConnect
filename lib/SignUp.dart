@@ -16,6 +16,25 @@ class SignUpState extends State<SignUp> {
   String newUsername = "";
   String newPassword = "";
   String passwordFieldContent;
+  
+  // helper method that makes a get request to add user account
+  inputData() async {
+    var httpClient = createHttpClient();
+    var response = await httpClient.get(
+        'http://localhost:8080/tiger-connect/signup?username=${newUsername}&password=${newPassword}&email=${email}');
+    String result = response.body;
+    int id = int.parse(result);
+    if (id < 0) {
+      // Return "Existing account already associated with email."};
+    }
+    else if (id == 0) {
+      // Return "Username already exists."
+    }
+    else {
+      globals.user_id = id;
+      Navigator.of(context).pushNamed("/ProfileInfo");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +104,7 @@ class SignUpState extends State<SignUp> {
                     color: Colors.orange),
                 iconSize: 70.0,
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/ProfileInfo");},
+                  inputData();},
               ),
 
               new Text("Sign Up", textAlign: TextAlign.center,),
