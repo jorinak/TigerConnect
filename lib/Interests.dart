@@ -60,7 +60,7 @@ class _InterestsState extends State<Interests> {
         'http://localhost:8080/tiger-connect/interest?id=${globals.user_id}&c1=${cat1}&c2=${cat2}&c3=${cat3}&c4=${cat4}&c5=${cat5}&s1=${firstChoice}&s2=${secondChoice}&s3=${thirdChoice}&s4=${fourthChoice}&s5=${fifthChoice}');
     print(response.statusCode);
     print(response.body);
-    Navigator.of(context).pushNamed("/HomeProfilePage");
+    Navigator.of(context).pushNamed("/CreateConnect");
   }
 
   @override
